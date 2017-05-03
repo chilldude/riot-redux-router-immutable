@@ -1,5 +1,4 @@
 var riot = require('riot')
-var route = require('riot-route')
 
 var actions = require('./actions')
 
@@ -14,18 +13,18 @@ function riotRouterMiddlewareFactory(routeBase) {
       var getState = _ref.getState
 
       // listen for riot router changes - re-dispatch with routeChanged
-      route(function() {
+      riot.route(function() {
         var args = Array.prototype.slice.call(arguments)
         dispatch(actions.routeChanged(args.join('/')))
       })
 
       // set the route base if given
       if (routeBase) {
-        route.base(routeBase)
+        riot.route.base(routeBase)
       }
 
       // start listening to routes immediately
-      route.start(true)
+      riot.route.start(true)
 
       return function (next) {
         return function (action) {
@@ -36,7 +35,7 @@ function riotRouterMiddlewareFactory(routeBase) {
           }
 
           // call riot router using action payload
-          route(action.data)
+          riot.route(action.data)
         }
       }
     }
