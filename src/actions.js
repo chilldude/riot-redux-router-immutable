@@ -10,10 +10,13 @@ module.exports = {
 }
 
 // dispatch this to change the route
-function route(url) {
+function route(url, title) {
   return {
     type: ROUTER_GO_ACTION,
-    data: url
+    data: {
+        url: url,
+        title: title
+    }
   }
 }
 

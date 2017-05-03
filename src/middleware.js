@@ -35,7 +35,7 @@ function riotRouterMiddlewareFactory(routeBase) {
           }
 
           // call riot router using action payload
-          riot.route(action.data)
+          riot.route(action.data.url, action.data.title, true)
         }
       }
     }
